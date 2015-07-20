@@ -1,0 +1,13 @@
+/*
+ * NpatchLib - Nagata Patch Library
+ *
+ * Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+ * All rights reserved.
+ *
+ */
+
+
+Overview
+========
+
+NpatchLib is a geometry shape handling library that is grounded in Nagata patch. The implementation of this library incorpolates 3rd order Bezier cureve to eliminate crucial error which is reported when the 2nd order is used. 
