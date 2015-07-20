@@ -6,9 +6,12 @@
  *
  */
 
-// Data.cpp: CData クラスのインプリメンテーション
-//
-//////////////////////////////////////////////////////////////////////
+/**
+ * @file   npt_Data.cxx
+ * @brief  Npatch CData Class
+ * @author aics
+ */
+
 #include <string.h>
 #include <stdio.h>
 

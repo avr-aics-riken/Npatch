@@ -6,11 +6,19 @@
  *
  */
 
+/**
+ * @file   npt_Face.cxx
+ * @brief  Npatch CFace Class
+ * @author aics
+ */
+
+#include <stdio.h>
+#include "npt_Face.h"
+
+
 //********************************************
 // class CFace
 //********************************************
-#include <stdio.h>
-#include "npt_Face.h"
 
 
 // ----------------------------------------------

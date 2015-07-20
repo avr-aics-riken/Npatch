@@ -14,7 +14,7 @@
 
 AC_PREREQ([2.69])
 
-AC_INIT([NpatchLib],[0.8.0],[keno@riken.jp],[NpatchLib])
+AC_INIT([NpatchLib],[0.8.1],[keno@riken.jp],[NpatchLib])
 
 echo "----------------------------------------"
 echo "Running NpatchLib Configure Script"
@@ -63,7 +63,7 @@ AM_INIT_AUTOMAKE()
 # revision No.
 #
 
-NPT_REVISION="20150720_1700"
+NPT_REVISION="20150720_1800"
 AC_SUBST(NPT_REVISION)
 
 

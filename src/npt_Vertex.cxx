@@ -6,10 +6,18 @@
  *
  */
 
+/**
+ * @file   npt_Vertex.cxx
+ * @brief  Npatch Vertex Class
+ * @author aics
+ */
+
+#include "npt_Vertex.h"
+
+
 //********************************************
 // class CVertex
 //********************************************
-#include "npt_Vertex.h"
 
 //----------------------------------------------------------
 //               隣接面の処理                             //
