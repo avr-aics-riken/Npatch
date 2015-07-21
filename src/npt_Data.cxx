@@ -68,7 +68,7 @@ void CData::MainProcess( char* infile, int degeree )
 	if( strcmp( Ex, "NPT" ) == 0 )  m_ExType = 1;
 
 	strncpy( m_OutFileName, m_InFileName, strlen( m_InFileName )-4  );
-	strcat( m_OutFileName, "_lib.NPT" );
+	strcat( m_OutFileName, "_lib.npt" );
 
 	std::cout<< "InFileName = " << m_InFileName << std::endl;
 	std::cout<< "OutFileName = " << m_OutFileName << std::endl;
