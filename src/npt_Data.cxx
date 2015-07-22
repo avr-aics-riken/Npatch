@@ -65,7 +65,7 @@ void CData::MainProcess( char* infile, int degeree )
 
 
 	m_ExType = 0;
-	if( strcmp( Ex, "NPT" ) == 0 )  m_ExType = 1;
+	if( strcmp( Ex, "npt" ) == 0 )  m_ExType = 1;
 
 	strncpy( m_OutFileName, m_InFileName, strlen( m_InFileName )-4  );
 	strcat( m_OutFileName, "_lib.npt" );
