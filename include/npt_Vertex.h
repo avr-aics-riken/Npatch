@@ -6,6 +6,12 @@
  *
  */
 
+/** 
+ * @file   npt_Vertex.h
+ * @brief  Npatch CVertex Class Header
+ * @author aics    
+ */
+
 //********************************************
 // class CVertex
 //********************************************

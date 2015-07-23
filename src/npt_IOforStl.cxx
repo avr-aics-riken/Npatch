@@ -23,6 +23,9 @@
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化）
+ */
 IOForStl::IOForStl(void)
 {
 	m_pBuffer		 = NULL;
@@ -39,6 +42,9 @@ IOForStl::IOForStl(void)
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           デストラクタ　（バッファを削除）
+ */
 IOForStl::~IOForStl(void)
 {
 	Delet_Buff();
@@ -50,6 +56,9 @@ IOForStl::~IOForStl(void)
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           バッファ削除
+ */
 void IOForStl::Delet_Buff()
 {
 	if( m_pBuffer != NULL ) delete [] m_pBuffer;
@@ -65,6 +74,12 @@ void IOForStl::Delet_Buff()
 //   in   ： deg	（曲面の次数　）
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           IOクラスのメイン関数
+ * @param[in]       InFile  入力ファイル名
+ * @param[in]       ExType  拡張子　0：Stl　1：Npt
+ * @param[in]       deg     曲面の次数
+ */
 void IOForStl::LoadStl( char *InFile, int ExType, int deg )
 {
 	
@@ -103,6 +118,11 @@ void IOForStl::LoadStl( char *InFile, int ExType, int deg )
 //   in   ： InFile　（STLファイル名）
 //  out   ： エラーコード　（0：エラー　1：正常）
 // **************************************************************
+/**
+ * @brief           STLファイルの読み込み
+ * @param[in]       InFile  STLファイル名
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::LoadStlFile( char *InFile )
 {
 
@@ -131,6 +151,10 @@ int IOForStl::LoadStlFile( char *InFile )
 //  機能  ： バッファから、行を抽出
 //  out   ： エラーコード　（0：エラー　1：正常）
 // **************************************************************
+/**
+ * @brief           バッファから、行を抽出
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::ReadLine()
 {
 	m_pBufferLine[0] = '\0';
@@ -153,6 +177,11 @@ int IOForStl::ReadLine()
 //   in   ： char *string
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           バッファ行から、必要の文字を探し出す
+ * @param[in]       string  文字列
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::OffsetToString(char *string)
 {
 
@@ -177,6 +206,10 @@ int IOForStl::OffsetToString(char *string)
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // **************************************************************
+/**
+ * @brief           バッファ上に一WORDを読む
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::ReadWord()
 {
 
@@ -215,6 +248,10 @@ int IOForStl::ReadWord()
 //   in   ： なし
 //  out   ： 要素の総数
 // *********************************************************
+/**
+ * @brief           STLの三角形の総数を取得（STLのAsciiコード）
+ * @return          要素の総数
+ */
 int IOForStl::GetStlNum_Ascii(void)
 {
 
@@ -239,6 +276,11 @@ int IOForStl::GetStlNum_Ascii(void)
 //   in   ： InFile					（入力ファイル名、XXX.NPT）
 //  out   ： 要素の総数
 // *********************************************************
+/**
+ * @brief           STLの三角形の総数を取得（NptのAsciiコード）
+ * @param[in]       InFile  入力ファイル名、XXX.npt
+ * @return          要素の総数
+ */
 int IOForStl::GetNptNum_Ascii( char* InFile ){
 
 	int nf = 0;
@@ -258,6 +300,11 @@ int IOForStl::GetNptNum_Ascii( char* InFile ){
 //   in   ： InFile					（入力ファイル名、XXX.NPT）
 //  out   ： 要素の総数
 // *********************************************************
+/**
+ * @brief           STLの三角形の総数を取得（Nptの	Binaryコード）
+ * @param[in]       InFile  入力ファイル名、XXX.npt
+ * @return          要素の総数
+ */
 int IOForStl::GetNptNum_Binary( char* InFile ){
 
 	int nf = 0, nb = 0;
@@ -287,6 +334,14 @@ int IOForStl::GetNptNum_Binary( char* InFile ){
 //   in   ： degree		:  曲面の次数
 //  out   ： エラーコード　（0：エラー　1：正常）   
 // *********************************************************
+/**
+ * @brief           長田係数及び頂点座標を出力(Asicc)
+ * @param[in]       name    出力ファイル名
+ * @param[in]       wFace   三角形情報
+ * @param[in]       FaceNum 三角形の総数
+ * @param[in]       degree  曲面の次数
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::SaveNPT_Ascii( char *name, CArray<CFace>& wFace, int FaceNum, int degree )
 {
 
@@ -352,6 +407,14 @@ int IOForStl::SaveNPT_Ascii( char *name, CArray<CFace>& wFace, int FaceNum, int 
 //   in   ： degree		:  曲面の次数
 //  out   ： エラーコード　（0：エラー　1：正常）   
 // *********************************************************
+/**
+ * @brief           長田係数及び頂点座標を出力(Binary)
+ * @param[in]       name    出力ファイル名
+ * @param[in]       wFace   三角形情報
+ * @param[in]       FaceNum 三角形の総数
+ * @param[in]       degree  曲面の次数
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::SaveNPT_Binary( char *name, CArray<CFace>& wFace, int FaceNum, int degree )
 {
 
@@ -419,6 +482,12 @@ int IOForStl::SaveNPT_Binary( char *name, CArray<CFace>& wFace, int FaceNum, int
 //   in   ： degree		:  曲面の次数
 //  out   ： エラーコード　（0：エラー　1：正常）   
 // *********************************************************
+/**
+ * @brief           長田係数及び頂点座標を読込(Binary)
+ * @param[in]       filename    出力ファイル名
+ * @param[in]       mod         曲面の次数
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int	IOForStl::LoadNPT_Binary( char *filename, int mod ){
 
 	int i, j, k;
@@ -515,6 +584,11 @@ int	IOForStl::LoadNPT_Binary( char *filename, int mod ){
 //   in   ： InFile		： 入力ファイル名
 //  out   ： 判断結果　（0：Ascii 1：Binary ）   
 // *********************************************************
+/**
+ * @brief           Asciiか、Binaryかをチェックする
+ * @param[in]       InFile  入力ファイル名
+ * @return          判断結果　（0：Ascii 1：Binary ）
+ */
 int IOForStl::CheckStlType( char* InFile )
 {
 
@@ -562,6 +636,11 @@ int IOForStl::CheckStlType( char* InFile )
 //   in   ： FILE *fp      ： 入力ファイル名
 //  out   ： エラーコード
 // *********************************************************
+/**
+ * @brief           三角形パッチの総数を読込
+ * @param[in]       InFile  入力ファイル名
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::GetStlNum_Binary (char* InFile )
 {
 
@@ -594,6 +673,13 @@ int IOForStl::GetStlNum_Binary (char* InFile )
 //           swap     ： SWAP
 //  out   ： エラーコード　（0：エラー　1：正常）   
 // *********************************************************
+/**
+ * @brief           BINARY形式のINT型の読込
+ * @param[in]       fp      入力ファイル名
+ * @param[in]       n       データ
+ * @param[in]       swap    SWAP
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int IOForStl::ReadInt(FILE *fp, int *n, int swap)
 {
   unsigned char *cptr,tmp;
@@ -618,6 +704,11 @@ int IOForStl::ReadInt(FILE *fp, int *n, int swap)
 //   in   ： FILE *fp      ： 入力ファイル名
 //  out   ： Float型の数字結果
 // *********************************************************
+/**
+ * @brief           BINARY形式のFloatT型の読込
+ * @param[in]       fp  入力ファイル名
+ * @return          Float型の数字結果
+ */
 float IOForStl::ReadFloat( FILE *fp )
 {
   union 

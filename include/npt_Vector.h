@@ -6,6 +6,12 @@
  *
  */
 
+/** 
+ * @file   npt_Vector.h
+ * @brief  Npatch CVector Class Header
+ * @author aics    
+ */
+
 //********************************************
 // class CVector
 //********************************************

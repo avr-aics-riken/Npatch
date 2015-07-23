@@ -32,6 +32,9 @@
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ */
 CFace::CFace()
 {
 	for(int i=0; i<3; i++) m_pFace[i]   = NULL;
@@ -44,6 +47,12 @@ CFace::CFace()
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ * @param[in]       pVertex1    第一頂点の座標
+ * @param[in]       pVertex2    第二頂点の座標
+ * @param[in]       pVertex3    第三頂点の座標
+ */
 CFace::CFace( CVertex *pVertex1, 
 				  CVertex *pVertex2, 
 				  CVertex *pVertex3  )
@@ -68,6 +77,9 @@ CFace::CFace( CVertex *pVertex1,
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           ARRAY情報のクリア
+ */
 inline void CFace::Clear()
 {
 	int i;
@@ -83,6 +95,12 @@ inline void CFace::Clear()
 //   in   ： pVertex3  第三頂点の座標
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           頂点の代入
+ * @param[in]       pVertex1    第一頂点の座標
+ * @param[in]       pVertex2    第二頂点の座標
+ * @param[in]       pVertex3    第三頂点の座標
+ */
 inline void CFace::Set( CVertex *pVertex1, 
 						  CVertex *pVertex2, 
 						  CVertex *pVertex3  )
@@ -102,6 +120,10 @@ inline void CFace::Set( CVertex *pVertex1,
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           
+ * @param[in]       面の法線計算
+ */
 void CFace::CalculateNormal()
 {
 	CVector u( m_pVertex[0], m_pVertex[1] );
@@ -120,6 +142,12 @@ void CFace::CalculateNormal()
 //   in   ： Num  			出来た法線の総数
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           面上の節点の法線計算
+ * @param[in]       vector  法線ベクトル
+ * @param[in]       index   面上の頂点番号（0、または1、または2）
+ * @param[in]       Num     出来た法線の総数
+ */
 void CFace::SetNormal_New( CVector &vector, 
 							 int index, int Num )
 {
@@ -135,6 +163,11 @@ void CFace::SetNormal_New( CVector &vector,
 //   in   ： index  		int index		係数の番号（C1、C2、C3）
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           長田係数を取得
+ * @param[in]       c_aws   長田パッチ係数
+ * @param[in]       index   係数の番号（C1、C2、C3）
+ */
 void CFace::SetCoef( double c_aws[3], int index )
 {
 	m_Coef[index].x = c_aws[0];

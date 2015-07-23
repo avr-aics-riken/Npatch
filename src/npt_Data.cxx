@@ -24,6 +24,9 @@
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief コンストラクタ （初期化）
+ */
 CData::CData()
 {
 
@@ -39,6 +42,9 @@ CData::CData()
 //   in   ： なし
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief デストラクタ （バッファを削除）
+ */
 CData::~CData()
 {
 	//	+++++++++ メモリ開放 ++++++++++++++++++++
@@ -53,6 +59,11 @@ CData::~CData()
 //   in   ; degeree 　曲面の次数
 //  out   ： なし
 // *********************************************************
+/**
+ * @brief           メイン関数
+ * @param[in]       infile    入力ファイル名
+ * @param[in]       degeree   曲面の次数
+ */
 void CData::MainProcess( char* infile, int degeree )
 {
 
@@ -101,6 +112,10 @@ void CData::MainProcess( char* infile, int degeree )
 //   in   ; OutType  出力形式　（0: Ascii   1: Binary）
 //  out   ： なし
 // *********************************************************
+/**
+ * @brief NPTファイルの出力
+ * @param[in] OutType 出力形式　（0: Ascii   1: Binary）
+ */
 void CData::SaveNPT( int OutType )
 {
 	if( OutType == 0 )		readStl.SaveNPT_Ascii( m_OutFileName, m_ArrayFace, m_FaceNum, m_degree );
@@ -113,6 +128,10 @@ void CData::SaveNPT( int OutType )
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           ASCII形式のデータを読み込むためのプロセス
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::StoreStl()
 {
 
@@ -140,9 +159,15 @@ int CData::StoreStl()
 //  関数名： Store_AsciiStlAsMesh()
 //  機能  ： ASCII形式のデータを読み込みと格納　　（STL）
 //   in   ： pArrayFace　　　面のバファ
-//   in   ： pArrayFace　　　頂点のバファ
+//   in   ： pArrayVertex　　頂点のバファ
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           ASCII形式のデータを読み込みと格納　　（STL）
+ * @param[in]       pArrayFace      面のバファ
+ * @param[in]       pArrayVertex    頂点のバファ
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Store_AsciiStlAsMesh( CArray<CFace> *pArrayFace, CArray<CVertex> *pArrayVertex )
 {
 	int   tmpNum;
@@ -280,6 +305,12 @@ int CData::Store_AsciiStlAsMesh( CArray<CFace> *pArrayFace, CArray<CVertex> *pAr
 //   in   ： pArrayFace　　　頂点のバファ
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           BINARY形式のデータを読み込みと格納　（STL）
+ * @param[in]       pArrayFace      面のバファ
+ * @param[in]       pArrayVertex    頂点のバファ
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Store_BinaryStlAsMesh( CArray<CFace>* pArrayFace, 
 							      CArray<CVertex>* pArrayVertex )
 {
@@ -461,6 +492,12 @@ int CData::Store_BinaryStlAsMesh( CArray<CFace>* pArrayFace,
 //   in   ： pArrayFace　　　頂点のバファ
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           ASCII形式のデータを読み込みと格納　　（NPT）
+ * @param[in]       pArrayFace      面のバファ
+ * @param[in]       pArrayVertex    頂点のバファ
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Store_AsciiNptAsMesh( CArray<CFace>* pArrayFace, 
 							      CArray<CVertex>* pArrayVertex )
 {
@@ -609,6 +646,12 @@ int CData::Store_AsciiNptAsMesh( CArray<CFace>* pArrayFace,
 //   in   ： pArrayFace　　　頂点のバファ
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           BINARY形式のデータを読み込みと格納　　（NPT）
+ * @param[in]       pArrayFace      面のバファ
+ * @param[in]       pArrayVertex    頂点のバファ
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Store_BinaryNptAsMesh( CArray<CFace>* pArrayFace, 
 							      CArray<CVertex>* pArrayVertex )
 {
@@ -788,6 +831,10 @@ int CData::Store_BinaryNptAsMesh( CArray<CFace>* pArrayFace,
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           共通エージ及び頂点によって、隣接面を作成
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Vertex_BuildAdjacency()
 {
 	int i;
@@ -824,6 +871,10 @@ int CData::Vertex_BuildAdjacency()
 //********************************************
 //       頂点の法線計算
 //********************************************
+/**
+ * @brief           頂点の法線計算
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Vertex_CalcNormalPerVertex(void)
 {
 
@@ -908,6 +959,10 @@ int CData::Vertex_CalcNormalPerVertex(void)
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           面の法線計算
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::Vertex_CalcNormalPerFace(void)
 {
 
@@ -928,6 +983,9 @@ int CData::Vertex_CalcNormalPerFace(void)
 //********************************************
 // Free
 //********************************************
+/**
+ * @brief           面と頂点のバファを削除
+ */
 void CData::Vertex_FreeArray()
 {
 	m_ArrayVertex.Free();
@@ -945,6 +1003,10 @@ void CData::Vertex_FreeArray()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田パッチの係数を求める（二次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetCoef2Deg()
 {
 
@@ -999,6 +1061,10 @@ int CData::MeshPatch_GetCoef2Deg()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田パッチの係数を求める（三次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetCoef3Deg()
 {
 
@@ -1059,6 +1125,10 @@ int CData::MeshPatch_GetCoef3Deg()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田係数及びη、ζより、曲面上の点を求める（二次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetValue2Deg()
 {
 
@@ -1100,6 +1170,10 @@ int CData::MeshPatch_GetValue2Deg()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田係数及びη、ζより、曲面上の点を求める（三次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetValue3Deg()
 {
 
@@ -1145,6 +1219,10 @@ int CData::MeshPatch_GetValue3Deg()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田係数及びη、ζより、曲面上の各辺の中点を求める（二次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetValue3Point2Deg()
 {
 
@@ -1203,6 +1281,10 @@ int CData::MeshPatch_GetValue3Point2Deg()
 //   in   ： なし
 //  out   ： エラーコード　（0：エラー　1：正常）
 // *********************************************************
+/**
+ * @brief           長田係数及びη、ζより、曲面上の各辺の中点を求める（三次曲面）
+ * @return          エラーコード　（0：エラー　1：正常）
+ */
 int CData::MeshPatch_GetValue3Point3Deg()
 {
 
@@ -1263,6 +1345,9 @@ int CData::MeshPatch_GetValue3Point3Deg()
 //   in   ： なし
 //  out   ： なし
 // *********************************************************
+/**
+ * @brief           長田係数に使う計算結果を削除
+ */
 void CData::MeshPatch_freeCoef()
 {
 	

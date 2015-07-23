@@ -6,10 +6,10 @@
  *
  */
 
-/**
+/** 
  * @file   npt_Vector.cxx
- * @brief  Npatch Vector Class
- * @author aics
+ * @brief  Npatch CVector Class
+ * @author aics    
  */
 
 #include <math.h>
@@ -32,6 +32,9 @@
 //  関数名： CFace()
 //  機能  ： コンストラクタ
 // ********************************************
+/**
+ * @brief           デストラクタ （バッファを削除） 
+ */
 CVector::~CVector()
 {
 }
@@ -42,6 +45,10 @@ CVector::~CVector()
 //   in   ： vector 　ベクトル　例；B[3]
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ * @param[in]       vector 　ベクトル　例；B[3]
+ */
 CVector::CVector( CVector &vector )
 {
 	Set( &vector );
@@ -53,6 +60,10 @@ CVector::CVector( CVector &vector )
 //   in   ： *pVector 　ベクトルのポインタ　
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ * @param[in]       pVector ベクトル
+ */
 CVector::CVector( CVector *pVector )
 {
 	Set( pVector );
@@ -62,10 +73,16 @@ CVector::CVector( CVector *pVector )
 //  関数名： CVector
 //  機能  ： コンストラクタ　（初期化） 
 //   in   ： x　　X座標
-//   in   ： ｙ　 Y座標　
+//   in   ： ｙ　 X座標　
 //   in   ： ｚ   Z座標　　
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ * @param[in]       x   X座標
+ * @param[in]       y   Y座標
+ * @param[in]       z   Z座標
+ */
 CVector::CVector( const float x, const float y, const float z)
 {
 	Set( x, y, z);
@@ -79,6 +96,11 @@ CVector::CVector( const float x, const float y, const float z)
 //   in   ： ｚ   Z座標　　
 //  out   ： なし
 // **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化）
+ * @param[in]       pVertex1    始点
+ * @param[in]       pVertex2    終点
+ */
 CVector::CVector( CVertex *pVertex1, CVertex *pVertex2 )
 {
 	m_x = pVertex2->x() - pVertex1->x();
@@ -91,6 +113,11 @@ CVector::CVector( CVertex *pVertex1, CVertex *pVertex2 )
 //  機能  ： コンストラクタ（ベクトルの長さ）
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           コンストラクタ（ベクトルの長さ）
+ * @param[in]       vertex1     始点
+ * @param[in]       vertex2     終点
+ */
 CVector::CVector( CVertex &vertex1, CVertex &vertex2 )
 {
 	m_x = vertex2.x() - vertex1.x();
@@ -107,6 +134,9 @@ CVector::CVector( CVertex &vertex1, CVertex &vertex2 )
 //  関数名： Clear()
 //  機能  ： ベクトルの初期化
 // ********************************************
+/**
+ * @brief           ベクトルの初期化
+ */
 void CVector::Clear(void)
 {
 	Set( 0.0f, 0.0f, 0.0f);
@@ -118,6 +148,12 @@ void CVector::Clear(void)
 //   in   ： 座標など
 // ********************************************
 void CVector::Set( const float x, const float y, const float z )
+/**
+ * @brief           ベクトル格納
+ * @param[in]       x   X座標
+ * @param[in]       y   Y座標
+ * @param[in]       z   Z座標
+ */
 {
 	m_x = x;
 	m_y = y;
@@ -129,6 +165,10 @@ void CVector::Set( const float x, const float y, const float z )
 //  機能  ： ベクトル格納
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           ベクトル格納
+ * @param[in]       pVector ベクトル
+ */
 void CVector::Set( CVector *pVector )
 {
 	Set( pVector->x(), pVector->y(), pVector->z());
@@ -140,6 +180,10 @@ void CVector::Set( CVector *pVector )
 //  機能  ： ベクトル格納
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           ベクトル格納
+ * @param[in]       pVector ベクトル
+ */
 void CVector::Set( CVector *pVector, int index )
 {
 	Set( pVector->x(), pVector->y(), pVector->z());
@@ -150,6 +194,10 @@ void CVector::Set( CVector *pVector, int index )
 //  機能  ： ベクトル格納
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           ベクトル格納
+ * @param[in]       vector  ベクトル
+ */
 void CVector::Set(CVector &vector)
 {
 	Set( vector.x(), vector.y(), vector.z());
@@ -161,6 +209,11 @@ void CVector::Set(CVector &vector)
 //  機能  ： ベクトル格納
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           ベクトル格納
+ * @param[in]       pVertex1    始点
+ * @param[in]       pVertex2    終点
+ */
 void CVector::Set( CVertex *pVertex1, CVertex *pVertex2 )
 {
 	m_x = pVertex2->x() - pVertex1->x();
@@ -171,6 +224,10 @@ void CVector::Set( CVertex *pVertex1, CVertex *pVertex2 )
 //********************************************
 // Operator + 
 //********************************************
+/**
+ * @brief           演算子 +
+ * @param[in]       pVector ベクトル
+ */
 void CVector::operator+=( CVector* pVector )
 {
 	m_x += pVector->x();
@@ -183,6 +240,10 @@ void CVector::operator+=( CVector* pVector )
 //  機能  ： 外積（本ベクトルと他のベクトル）
 //   in   ： ベクトル
 // ********************************************
+/**
+ * @brief           外積（本ベクトルと他のベクトル）
+ * @param[in]       vector ベクトル
+ */
 void CVector::Cross( CVector& vector )
 {
 	double x = (double)m_y*(double)vector.z() - (double)m_z*(double)vector.y();
@@ -195,6 +256,9 @@ void CVector::Cross( CVector& vector )
 //  関数名： NormalizeL2()
 //  機能  ： ベクトルの正規化
 // ********************************************
+/**
+ * @brief           ベクトルの正規化
+ */
 void CVector::NormalizeL2(void)
 {
 	double norm = GetNormL2();
@@ -210,6 +274,10 @@ void CVector::NormalizeL2(void)
 //  関数名： GetNormL2()
 //  機能  ： ベクトルの長さ
 // ********************************************
+/**
+ * @brief           ベクトルの長さ
+ * @return          ベクトルの長さ
+ */
 double CVector::GetNormL2(void)
 {
 	return sqrt((double)m_x*(double)m_x + 

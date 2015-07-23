@@ -8,7 +8,7 @@
 
 /**
  * @file   npt_Vertex.cxx
- * @brief  Npatch Vertex Class
+ * @brief  Npatch CVertex Class
  * @author aics
  */
 
@@ -29,6 +29,10 @@
 //   in   ： なし   
 //  out   ： なし
 // *********************************************************
+/**
+ * @brief           隣の面を追加
+ * @param[in]       pFace   面
+ */
 void CVertex::AddNeighbor(CFace *pFace)
 {
 	m_ArrayFaceNeighbor.Add( pFace );
@@ -40,6 +44,10 @@ void CVertex::AddNeighbor(CFace *pFace)
 //   in   ： なし    
 //  out   ： 面の数       
 // *********************************************************
+/**
+ * @brief           隣の面の総数を取得
+ * @return          面の数
+ */
 int CVertex::GetNumOfFaceNeighbor(void)
 {
 	return m_ArrayFaceNeighbor.GetSize();
@@ -51,6 +59,9 @@ int CVertex::GetNumOfFaceNeighbor(void)
 //   in   ： なし
 //  out   ： なし       
 // *********************************************************
+/**
+ * @brief           隣の面を削除
+ */
 void CVertex::RemoveAllFaceNeighbor(void)
 {
 	m_ArrayFaceNeighbor.RemoveAll();

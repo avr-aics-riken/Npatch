@@ -7,10 +7,11 @@
  */
 
 
-/**
-* @file   npt_Version.h
-* バージョン情報のヘッダーファイル
-*/
+/** 
+ * @file   npt_Version.h
+ * @brief  Version information Header
+ * @author aics    
+ */
 
 #ifndef _NPT_VERSION_H_
 #define _NPT_VERSION_H_
