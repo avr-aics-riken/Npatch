@@ -89,8 +89,7 @@ inline void CFace::Set( CVertex *pVertex1,
 // ---------------------------------------------
 
 /**
- * @brief           
- * @param[in]       面の法線計算
+ * @brief           面の法線計算
  */
 void CFace::CalculateNormal()
 {
