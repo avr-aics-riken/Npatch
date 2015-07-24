@@ -43,6 +43,9 @@ public :
 	// ----------------------------------------------
 	CFace();
 	CFace( CVertex *pVertex1, CVertex *pVertex2, CVertex *pVertex3 );
+/**
+ * @brief           デストラクタ　（バッファを削除） 
+ */
 	virtual ~CFace() {}
 
 	// ----------------------------------------------
@@ -53,10 +56,23 @@ public :
 	void Clear();
 	void Set( CVertex *pVertex1, CVertex *pVertex2, CVertex *pVertex3 );
 
+/**
+ * @brief           頂点の取得
+ * @param[in]       index  	インデックス
+ * @return          頂点
+ */
 	CVertex *v(int index) { return m_pVertex[index%6]; }
 
 	// ++++++++++++++++ 法線計算 +++++++++++++++++++
+/**
+ * @brief           法線ベクトルの取得
+ * @return          法線ベクトル
+ */
 	CVector * GetNormal() { return &m_Normal; }
+/**
+ * @brief           法線ベクトルの登録
+ * @param[in]       vector	法線ベクトル
+ */
 	void		SetNormal( CVector &vector ) { m_Normal.Set(vector); }
 	void		CalculateNormal();
 	void		SetNormal_New( CVector &vector, int index, int Num );
