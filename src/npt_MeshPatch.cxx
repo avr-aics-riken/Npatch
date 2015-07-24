@@ -70,10 +70,21 @@ int MeshPatch::CalcGetCoef2Deg(	double norm[3],
 
 /**
  * @brief           
- * @param[in]       
- * @param[out]      
- * @param[in,out]   
- * @return          
+ * @param[in]       norm    法線
+ * @param[in]       p1      頂点1
+ * @param[in]       norm1   頂点1の法線ベクトル
+ * @param[in]       p2      頂点2
+ * @param[in]       norm2   頂点2の法線ベクトル
+ * @param[in]       p3      頂点3
+ * @param[in]       norm3   頂点3の法線ベクトル
+ * @param[out]      C1      3次曲面頂点1
+ * @param[out]      C2      3次曲面頂点2
+ * @param[out]      C3      3次曲面頂点3
+ * @param[out]      C4      3次曲面頂点4
+ * @param[out]      C5      3次曲面頂点5
+ * @param[out]      C6      3次曲面頂点6
+ * @param[out]      C7      3次曲面頂点7
+ * @return          1
  */
 int MeshPatch::CalcGetCoef3Deg(	double norm[3], 
 							double p1[3], double norm1[3], 
@@ -336,7 +347,17 @@ void MeshPatch::CalcNearPosOnLine( double pnt[3], double pos[3],
  * @brief           長田パッチ係数より、曲面上の点を求める
  * @param[in]       eta     η
  * @param[in]       zeta    ζ
- * @param[out]      pos     求められた点の座標
+ * @param[in]       p1      頂点1の座標
+ * @param[in]       p2      頂点2の座標
+ * @param[in]       p3      頂点3の座標
+ * @param[in]       c1      長田パッチ生成頂点座標
+ * @param[in]       c2      長田パッチ生成頂点座標
+ * @param[in]       c3      長田パッチ生成頂点座標
+ * @param[in]       c4      長田パッチ生成頂点座標
+ * @param[in]       c5      長田パッチ生成頂点座標
+ * @param[in]       c6      長田パッチ生成頂点座標
+ * @param[in]       c7      長田パッチ生成頂点座標
+ * @param[out]      pos_o   求められた点の座標
  * @return          1
  */
 int MeshPatch::Evaluate3Deg( double eta, double zeta, double p1[3], double p2[3], double p3[3], 
