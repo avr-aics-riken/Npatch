@@ -69,7 +69,7 @@ int MeshPatch::CalcGetCoef2Deg(	double norm[3],
 }
 
 /**
- * @brief           
+ * @brief           長田パッチの係数を求めるメイン関数
  * @param[in]       norm    法線
  * @param[in]       p1      頂点1
  * @param[in]       norm1   頂点1の法線ベクトル
@@ -253,9 +253,9 @@ int MeshPatch::Evaluate2Deg( double eta, double zeta, double p1[3], double p2[3]
 /**
  * @brief           ２平面の交線（無現線分）
  * @param[in]       vec1    平面１の法線ベクトル（単位ベクトル）
- * @param[in]       d1      
+ * @param[in]       d1      頂点１原点からの距離
  * @param[in]       vec2    平面２の法線ベクトル（単位ベクトル）
- * @param[in]       d2      
+ * @param[in]       d2      頂点２原点からの距離
  * @param[out]      pos     面の交線の通過点（原点からの最短距離）
  * @param[out]      vec     面の交線ベクトル
  * @return          true
