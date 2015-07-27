@@ -114,6 +114,7 @@ int IOForStl::LoadStlFile( char *InFile )
 	return 1;
 }
 
+/**
  * @brief           バッファから、行を抽出
  * @return          エラーコード　（0：エラー　1：正常）
  */
