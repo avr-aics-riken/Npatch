@@ -16,35 +16,37 @@
 #include "npt_MeshPatch.h"
 
 
-// *******************************************************************
-//						コンストラクタ
-// *******************************************************************
+/**
+ * @brief           コンストラクタ
+ */
 MeshPatch::MeshPatch(void)
 {
 
 	m_alwAngle = 0.0031;
 }
 
+/**
+ * @brief           デストラクタ
+ */
 MeshPatch::~MeshPatch(void)
 {
 }
 
 
-// *******************************************************************
-//  関数名： CalcGetCoef
-//  機能  ： 長田パッチの係数を求めるメイン関数
-//　
-//   norm  [in] : 面の法線ベクトル（単位ベクトル）　
-//   p1  　[in] : 頂点１の座標　
-//   norm1 [in] : 頂点１の法線ベクトル（単位ベクトル）
-//   p2  　[in] : 頂点２の座標　
-//   norm2 [in] : 頂点２の法線ベクトル（単位ベクトル）
-//   p3  　[in] : 頂点３の座標　
-//   norm3 [in] : 頂点３の法線ベクトル（単位ベクトル）
-//   c1   [out] : 長田パッチの係数C１
-//   c2   [out] : 長田パッチの係数C２
-//   c3   [out] : 長田パッチの係数C３
-// *******************************************************************
+/**
+ * @brief           長田パッチの係数を求めるメイン関数
+ * @param[in]       norm    面の法線ベクトル（単位ベクトル）
+ * @param[in]       p1      頂点１の座標
+ * @param[in]       norm1   頂点１の法線ベクトル（単位ベクトル）
+ * @param[in]       p2      頂点２の座標
+ * @param[in]       norm2   頂点２の法線ベクトル（単位ベクトル）
+ * @param[in]       p3      頂点３の座標
+ * @param[in]       norm3   頂点３の法線ベクトル（単位ベクトル）
+ * @param[in,out]   C1      長田パッチの係数C１
+ * @param[in,out]   C2      長田パッチの係数C２
+ * @param[in,out]   C3      長田パッチの係数C３
+ * @return          1
+ */
 int MeshPatch::CalcGetCoef2Deg(	double norm[3], 
 								double p1[3], double norm1[3], 
 								double p2[3], double norm2[3], 
@@ -66,6 +68,24 @@ int MeshPatch::CalcGetCoef2Deg(	double norm[3],
 	return 1;
 }
 
+/**
+ * @brief           長田パッチの係数を求めるメイン関数
+ * @param[in]       norm    法線
+ * @param[in]       p1      頂点1
+ * @param[in]       norm1   頂点1の法線ベクトル
+ * @param[in]       p2      頂点2
+ * @param[in]       norm2   頂点2の法線ベクトル
+ * @param[in]       p3      頂点3
+ * @param[in]       norm3   頂点3の法線ベクトル
+ * @param[out]      C1      3次曲面頂点1
+ * @param[out]      C2      3次曲面頂点2
+ * @param[out]      C3      3次曲面頂点3
+ * @param[out]      C4      3次曲面頂点4
+ * @param[out]      C5      3次曲面頂点5
+ * @param[out]      C6      3次曲面頂点6
+ * @param[out]      C7      3次曲面頂点7
+ * @return          1
+ */
 int MeshPatch::CalcGetCoef3Deg(	double norm[3], 
 							double p1[3], double norm1[3], 
 							double p2[3], double norm2[3], 
@@ -125,19 +145,17 @@ int MeshPatch::CalcGetCoef3Deg(	double norm[3],
 }
 
 
-// *******************************************************************
-//  関数名： CalcPatchCoef
-//  機能  ： 長田パッチの係数を求める
-//　
-//   norm  [in] : 面の法線ベクトル（単位ベクトル）　
-//   p1  　[in] : 頂点１の座標　
-//   norm1 [in] : 頂点１の法線ベクトル（単位ベクトル）
-//   d1    [in] : 頂点１原点からの距離
-//   p2  　[in] : 頂点２の座標　
-//   norm2 [in] : 頂点２の法線ベクトル（単位ベクトル）
-//   d2    [in] : 頂点２原点からの距離
-//   cvec [out] : 長田パッチの係数
-// *******************************************************************
+/**
+ * @brief           長田パッチの係数を求める
+ * @param[in]       norm    面の法線ベクトル（単位ベクトル）
+ * @param[in]       p1      頂点１の座標
+ * @param[in]       norm1   頂点１の法線ベクトル（単位ベクトル）
+ * @param[in]       d1      頂点１原点からの距離
+ * @param[in]       p2      頂点２の座標
+ * @param[in]       norm2   頂点２の法線ベクトル（単位ベクトル）
+ * @param[in]       d2      頂点２原点からの距離
+ * @param[out]      cvec    長田パッチの係数
+ */
 void MeshPatch::CalcPatchCoef( double norm[3], double p1[3], double norm1[3], double d1, 
 											   double p2[3], double norm2[3], double d2, double cvec[3] )
 {
@@ -205,20 +223,19 @@ void MeshPatch::CalcPatchCoef( double norm[3], double p1[3], double norm1[3], do
 
 }
 
-// *******************************************************************
-//  関数名： Evaluate
-//  機能  ： 長田パッチ係数より、曲面上の点を求める
-//　
-//   eta 　[in] : η
-//   zeta  [in] : ζ
-//   p1  　[in] : 頂点１の座標
-//   p2  　[in] : 頂点２の座標
-//   p3  　[in] : 頂点３の座標　
-//   c1    [in] : 長田パッチ係数C１
-//   c2    [in] : 長田パッチ係数C２
-//   c3    [in] : 長田パッチ係数C３
-//   pos  [out] : 求められた点の座標
-// *******************************************************************
+/**
+ * @brief           長田パッチ係数より、曲面上の点を求める
+ * @param[in]       eta     η
+ * @param[in]       zeta    ζ
+ * @param[in]       p1      頂点１の座標
+ * @param[in]       p2      頂点２の座標
+ * @param[in]       p3      頂点３の座標
+ * @param[in]       c1      長田パッチ係数C１
+ * @param[in]       c2      長田パッチ係数C２
+ * @param[in]       c3      長田パッチ係数C３
+ * @param[out]      pos     求められた点の座標
+ * @return          0
+ */
 int MeshPatch::Evaluate2Deg( double eta, double zeta, double p1[3], double p2[3], double p3[3], 
 							 double c1[3], double c2[3], double c3[3], double pos[3] )
 {
@@ -233,17 +250,16 @@ int MeshPatch::Evaluate2Deg( double eta, double zeta, double p1[3], double p2[3]
 	return 0;
 }
 
-// *******************************************************************
-//  関数名： CalcIntersectionLine
-//  機能  ： ２平面の交線（無現線分）
-//　
-//   vec1  [in] : 平面１の法線ベクトル（単位ベクトル）　
-//   　d1  [in] : 
-//   vec2  [in] : 平面２の法線ベクトル（単位ベクトル）
-//   　d2  [in] :
-//    pos [out] : 面の交線の通過点（原点からの最短距離）
-//    vec [out] : 面の交線ベクトル
-// *******************************************************************
+/**
+ * @brief           ２平面の交線（無現線分）
+ * @param[in]       vec1    平面１の法線ベクトル（単位ベクトル）
+ * @param[in]       d1      頂点１原点からの距離
+ * @param[in]       vec2    平面２の法線ベクトル（単位ベクトル）
+ * @param[in]       d2      頂点２原点からの距離
+ * @param[out]      pos     面の交線の通過点（原点からの最短距離）
+ * @param[out]      vec     面の交線ベクトル
+ * @return          true
+ */
 bool MeshPatch::CalcIntersectionLine( double vec1[3], double d1, 
 											 double vec2[3], double d2, 
 											 double pos[3],  double vec[3] )
@@ -298,15 +314,13 @@ bool MeshPatch::CalcIntersectionLine( double vec1[3], double d1,
 	return true;
 }
 
-// *******************************************************************
-//  関数名： CalcNearPosOnLine
-//  機能  ： 点から線分上に垂線を下した点を求める
-//　
-//    pnt    [in] : 点座標　
-//    pos    [in] : 線分の通過点
-//    vec    [in] : 線分の方向ベクトル（単位ベクトル）
-//    pos_x [out] : 点から線分上に垂線を下した点
-// *******************************************************************
+/**
+ * @brief           点から線分上に垂線を下した点を求める
+ * @param[in]       pnt     点座標
+ * @param[in]       pos     線分の通過点
+ * @param[in]       vec     線分の方向ベクトル（単位ベクトル）
+ * @param[out]      pos_x   点から線分上に垂線を下した点
+ */
 void MeshPatch::CalcNearPosOnLine( double pnt[3], double pos[3], 
 								   double vec[3], double pos_x[3] )
 {
@@ -329,14 +343,23 @@ void MeshPatch::CalcNearPosOnLine( double pnt[3], double pos[3],
 //   　　　　　　　　三次ベジェ曲面
 //++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// *******************************************************************
-//  関数名： Evaluate
-//  機能  ： 長田パッチ係数より、曲面上の点を求める
-//　
-//   eta 　[in] : η
-//   zeta  [in] : ζ
-//   pos  [out] : 求められた点の座標
-// *******************************************************************
+/**
+ * @brief           長田パッチ係数より、曲面上の点を求める
+ * @param[in]       eta     η
+ * @param[in]       zeta    ζ
+ * @param[in]       p1      頂点1の座標
+ * @param[in]       p2      頂点2の座標
+ * @param[in]       p3      頂点3の座標
+ * @param[in]       c1      長田パッチ生成頂点座標
+ * @param[in]       c2      長田パッチ生成頂点座標
+ * @param[in]       c3      長田パッチ生成頂点座標
+ * @param[in]       c4      長田パッチ生成頂点座標
+ * @param[in]       c5      長田パッチ生成頂点座標
+ * @param[in]       c6      長田パッチ生成頂点座標
+ * @param[in]       c7      長田パッチ生成頂点座標
+ * @param[out]      pos_o   求められた点の座標
+ * @return          1
+ */
 int MeshPatch::Evaluate3Deg( double eta, double zeta, double p1[3], double p2[3], double p3[3], 
 							 double c1[3], double c2[3], double c3[3], double c4[3], double c5[3], 
 							 double c6[3], double c7[3], double pos_o[3] )
@@ -377,10 +400,9 @@ int MeshPatch::Evaluate3Deg( double eta, double zeta, double p1[3], double p2[3]
 }
 
 
-// *******************************************************************
-//  関数名： calcControlPoint_3deg
-//  機能  ： メッシュのベジェ制御点取得（３次多項式用）
-// *******************************************************************
+/**
+ * @brief           メッシュのベジェ制御点取得（３次多項式用）
+ */
 int MeshPatch::calcControlPoint_3deg()
 {
     // ++++++++ p1->p2辺 制御点
@@ -400,19 +422,17 @@ int MeshPatch::calcControlPoint_3deg()
 }
 
 
-// *******************************************************************
-//  関数名： calcControlPointEdge
-//  機能  ： 各辺の制御点取得（３次多項式用）
-//　
-//    p1    [in] : 頂点１座標
-//    norm1 [in] : 頂点１ベクトル
-//    d1    [in] : 頂点１ 原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
-//    p2    [in] : 頂点２座標
-//    norm2 [in] : 頂点２ベクトル
-//    d2    [in] : 頂点２原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
-//    cp1_e [out] :辺から求める制御点１
-//    cp2_e [out] :辺から求める制御点２
-// *******************************************************************
+/**
+ * @brief           各辺の制御点取得（３次多項式用）
+ * @param[in]       p1      頂点１座標
+ * @param[in]       norm1   頂点１ベクトル
+ * @param[in]       d1      頂点１ 原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
+ * @param[in]       p2      頂点２座標
+ * @param[in]       norm2   頂点２ベクトル
+ * @param[in]       d2      頂点２原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
+ * @param[out]      cp1_e   辺から求める制御点１
+ * @param[out]      cp2_e   辺から求める制御点２
+ */
 void MeshPatch::calcControlPointEdge( double p1[3], double norm1[3], double d1, 
 									  double p2[3], double norm2[3], double d2,  
 									  double cp1_e[3], double cp2_e[3] )
@@ -466,21 +486,19 @@ void MeshPatch::calcControlPointEdge( double p1[3], double norm1[3], double d1,
 
 }
 
-// *******************************************************************
-//  関数名： calcControlPointCenter
-//  機能  ： 中央の制御点取得（３次多項式用）
-//　
-//    p1		[in]  : 頂点１座標
-//    p2		[in]  : 頂点２座標
-//    p3		[in]  : 頂点２座標
-//    cp1_p1p2	[in]  : p1p2辺の制御点1
-//    cp2_p1p2	[in]  : p1p2辺の制御点2
-//    cp1_p2p3	[in]  : p2p3辺の制御点1
-//    cp2_p2p3	[in]  : p2p3辺の制御点2
-//    cp1_p3p1	[in]  : p3p1辺の制御点1
-//    cp2_p3p1	[in]  : p3p1辺の制御点2
-//    cp_center [out] : 中央制御点
-// *******************************************************************
+/**
+ * @brief           中央の制御点取得（３次多項式用）
+ * @param[in]       p1          頂点１座標
+ * @param[in]       p2          頂点２座標
+ * @param[in]       p3          頂点３座標
+ * @param[in]       cp1_p1p2    p1p2辺の制御点1
+ * @param[in]       cp2_p1p2    p1p2辺の制御点2
+ * @param[in]       cp1_p2p3    p2p3辺の制御点1
+ * @param[in]       cp2_p2p3    p2p3辺の制御点2
+ * @param[in]       cp1_p3p1    p3p1辺の制御点1
+ * @param[in]       cp2_p3p1    p3p1辺の制御点2
+ * @param[out]      cp_center   中央制御点
+ */
 void MeshPatch::calcControlPointCenter( double p1[3], double p2[3], double p3[3],      
 										double cp1_p1p2[3], double cp2_p1p2[3],
 										double cp1_p2p3[3], double cp2_p2p3[3],
@@ -501,19 +519,17 @@ void MeshPatch::calcControlPointCenter( double p1[3], double p2[3], double p3[3]
 
 
 
-// *******************************************************************
-//  関数名： calcP11
-//  機能  ： 制御点p11取得
-//　
-//    p1		[in] : 頂点１座標
-//    norm1		[in] : 頂点１ベクトル
-//    d1		[in] : 頂点１ 原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
-//    p2		[in] : 頂点２座標
-//    norm2		[in] : 頂点２ベクトル
-//    d2		[in] : 頂点２原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
-//    norm_base [in] : 曲線平面II（基準面）の法線ベクトル
-//    p11	   [out] : 制御点座標
-// *******************************************************************
+/**
+ * @brief           制御点p11取得
+ * @param[in]       p1          頂点１座標
+ * @param[in]       norm1       頂点１ベクトル
+ * @param[in]       d1          頂点１ 原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
+ * @param[in]       p2          頂点２座標
+ * @param[in]       norm2       頂点２ベクトル
+ * @param[in]       d2          頂点２原点からの距離(+-)  平面の方程式  Ax + By + Cz = D
+ * @param[in]       norm_base   曲線平面II（基準面）の法線ベクトル
+ * @param[out]      p11         制御点座標
+ */
 void MeshPatch::calcP11( double p1[3], double norm1[3], double d1,  
 						 double p2[3], double norm2[3], double d2, 
 						 double norm_base[3], double p11[3] )
@@ -584,18 +600,16 @@ void MeshPatch::calcP11( double p1[3], double norm1[3], double d1,
     p11[2] = pos_x[2] + norm_base[2]*( d1_base - d_pos_x_base );
 }
 
-// *******************************************************************
-//  関数名： correctP11
-//  機能  ： 制御点p11逆行対応補正（３次多項式用）
-//　
-//    p11		[in]  : 制御点座標
-//    p1		[in]  : 頂点１座標
-//    p2		[in]  : 頂点２座標
-//    p3		[in]  : 頂点２座標
-//    norm_base	[in]  : 曲線平面II（基準面）の法線ベクトル1
-//    p11_0	   [out]  : 制御点座標（補正後 1番目の制御点用）
-//    p11_1	   [out]  : 制御点座標（補正後 2番目の制御点用）
-// *******************************************************************
+/**
+ * @brief           制御点p11逆行対応補正（３次多項式用）
+ * @param[in]       p11         制御点座標
+ * @param[in]       p1          頂点１座標
+ * @param[in]       p2          頂点２座標
+ * @param[in]       p3          頂点３座標
+ * @param[in]       norm_base   曲線平面II（基準面）の法線ベクトル1
+ * @param[out]      p11_0       制御点座標（補正後 1番目の制御点用）
+ * @param[out]      p11_1       制御点座標（補正後 2番目の制御点用）
+ */
 void MeshPatch::correctP11( double p11[3], double p1[3], double p2[3],  
 						    double norm_base[3], double p11_0[3], double p11_1[3] )
 {

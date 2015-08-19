@@ -26,24 +26,21 @@
 // ----------------------------------------------
 
 
-// **************************************************************
-//  関数名： CFace
-//  機能  ： コンストラクタ　（初期化） 
-//   in   ： なし
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ */
 CFace::CFace()
 {
 	for(int i=0; i<3; i++) m_pFace[i]   = NULL;
 	for(int i=0; i<3; i++) m_pVertex[i] = NULL;
 }
 
-// **************************************************************
-//  関数名： CFace
-//  機能  ： コンストラクタ　（初期化） 
-//   in   ： なし
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           コンストラクタ　（初期化） 
+ * @param[in]       pVertex1    第一頂点の座標
+ * @param[in]       pVertex2    第二頂点の座標
+ * @param[in]       pVertex3    第三頂点の座標
+ */
 CFace::CFace( CVertex *pVertex1, 
 				  CVertex *pVertex2, 
 				  CVertex *pVertex3  )
@@ -62,12 +59,9 @@ CFace::CFace( CVertex *pVertex1,
 //             クラス操作                     //
 // ---------------------------------------------
 
-// **************************************************************
-//  関数名： Clear
-//  機能  ： ARRAY情報のクリア
-//   in   ： なし
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           ARRAY情報のクリア
+ */
 inline void CFace::Clear()
 {
 	int i;
@@ -75,14 +69,12 @@ inline void CFace::Clear()
 	for( i=0; i<3; i++ ) m_pVertex[i]	= NULL;
 }
 
-// **************************************************************
-//  関数名： Set
-//  機能  ： 頂点の代入
-//   in   ： pVertex1  第一頂点の座標
-//   in   ： pVertex2  第二頂点の座標
-//   in   ： pVertex3  第三頂点の座標
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           頂点の代入
+ * @param[in]       pVertex1    第一頂点の座標
+ * @param[in]       pVertex2    第二頂点の座標
+ * @param[in]       pVertex3    第三頂点の座標
+ */
 inline void CFace::Set( CVertex *pVertex1, 
 						  CVertex *pVertex2, 
 						  CVertex *pVertex3  )
@@ -96,12 +88,9 @@ inline void CFace::Set( CVertex *pVertex1,
 //             法線の計算                     //
 // ---------------------------------------------
 
-// **************************************************************
-//  関数名： CalculateNormal
-//  機能  ： 面の法線計算
-//   in   ： なし
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           面の法線計算
+ */
 void CFace::CalculateNormal()
 {
 	CVector u( m_pVertex[0], m_pVertex[1] );
@@ -112,14 +101,12 @@ void CFace::CalculateNormal()
 	m_Normal.NormalizeL2();
 }
 
-// **************************************************************
-//  関数名： SetNormal_New
-//  機能  ： 面上の節点の法線計算
-//   in   ： &vector  		法線ベクトル
-//   in   ： index  		面上の頂点番号（0、または1、または2）
-//   in   ： Num  			出来た法線の総数
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           面上の節点の法線計算
+ * @param[in]       vector  法線ベクトル
+ * @param[in]       index   面上の頂点番号（0、または1、または2）
+ * @param[in]       Num     出来た法線の総数
+ */
 void CFace::SetNormal_New( CVector &vector, 
 							 int index, int Num )
 {
@@ -128,13 +115,11 @@ void CFace::SetNormal_New( CVector &vector,
 	m_NewNormal[index].z = vector.z()/Num;
 }
 
-// **************************************************************
-//  関数名： SetCoef
-//  機能  ： 長田係数を取得
-//   in   ： c_aws[3]		長田パッチ係数
-//   in   ： index  		int index		係数の番号（C1、C2、C3）
-//  out   ： なし
-// **************************************************************
+/**
+ * @brief           長田係数を取得
+ * @param[in]       c_aws   長田パッチ係数
+ * @param[in]       index   係数の番号（C1、C2、C3）
+ */
 void CFace::SetCoef( double c_aws[3], int index )
 {
 	m_Coef[index].x = c_aws[0];

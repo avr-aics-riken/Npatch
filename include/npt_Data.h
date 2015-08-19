@@ -137,6 +137,13 @@ protected:
 
 };
 
+/**
+ * @brief           値の登録
+ * @param[in]       p 	配列
+ * @param[in]       x 	値1
+ * @param[in]       y 	値2
+ * @param[in]       z 	値3
+ */
 inline void CData::SetValue( double p[3], double x, double y, double z )
 {
 	p[0] = x; 
@@ -144,6 +151,15 @@ inline void CData::SetValue( double p[3], double x, double y, double z )
 	p[2] = z;
 }
 
+/**
+ * @brief           差の登録
+ * @param[in]       x1	引く値1
+ * @param[in]       y1	引く値2
+ * @param[in]       z1	引く値3
+ * @param[in]       x2	値1
+ * @param[in]       y2	値2
+ * @param[in]       z2	値3
+ */
 inline void CData::SetValueSub( double vec[3], double x1, double y1, double z1, 
 											   double x2, double y2, double z2 )
 {

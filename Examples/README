@@ -1,0 +1,46 @@
+/*
+ * NpatchLib - Nagata Patch Library
+ *
+ * Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+ * All rights reserved.
+ *
+ */
+
+
+このディレクトリには、NpatchLibの例題プログラムが格納されています。
+例題プログラムは、次のコマンドで生成されます。
+
+$cd ../BUILD_DIR/Examples
+$make
+
+ただし、NpatchLibライブラリのビルドが終わっていることが前提です。
+
+プログラムは以下の様に動かします。
+$cp stl2npt ../../Examples
+$cd ../../Examples
+$./stl2npt fan.stl 3 0
+
+3次元Nagata Patchファイルfan_lib.nptが生成されます。
+
+
+コマンド引数は以下の様になります。
+$./stl2npt STLFilePath degree(2 or 3) outPutEncode(0:Ascii, 1:Binary)
+
+
+プログラム実行例
+3次元Nagata PatchファイルをAsciiコードで出力します。
+$./stl2npt fan.stl 3 0
+ファイルfan_lib.nptが生成されます。
+
+3次元Nagata PatchファイルをBinaryコードで出力します。
+$./stl2npt fan.stl 3 1
+ファイルfan_lib.nptが生成されます。
+
+2次元Nagata PatchファイルをAsciiコードで出力します。
+$./stl2npt fan.stl 2 0
+ファイルfan_lib.nptが生成されます。
+
+2次元Nagata PatchファイルをBinaryコードで出力します。
+$./stl2npt fan.stl 2 1
+ファイルfan_lib.nptが生成されます。
+

@@ -42,6 +42,9 @@ private:
 public:
 
 	// Construction
+/**
+ * @brief           コンストラクタ
+ */
 CArray(){
 	m_pData = 0;
 	m_nSize = 0;
@@ -50,6 +53,9 @@ CArray(){
 }
 
 // Destruction
+/**
+ * @brief           デストラクタ
+ */
 ~CArray()	{
 	delete [] (BYTE*)m_pData;
 	}
@@ -57,12 +63,23 @@ CArray(){
 float m_scale;
 
 // Attributes
+/**
+ * @brief           配列サイズの取得
+ * @return          配列サイズ
+ */
 int GetSize()		{ return m_nSize; }
+/**
+ * @brief           配列上限取得
+ * @return          配列上限
+ */
 int GetUpperBound() { return m_nSize-1; }
 
 // Operations
 
 // Really clean up
+/**
+ * @brief           領域の解放
+ */
 void Free(){
 	for(int i=0;i<m_nSize;i++){
 		if(m_pData[i] != NULL){
@@ -74,21 +91,39 @@ void Free(){
 }
 
 // ++++++++ Clean up pointers array 
+/**
+ * @brief           全削除
+ */
 void RemoveAll() { SetSize(0); }
 
 // ++++++++ Accessing elements
+/**
+ * @brief           値の取得
+ * @param[in]       nIndex	取得するインデックス
+ * @return          値
+ */
 T* GetAt(int nIndex){ 
 	assert(nIndex >= 0 && nIndex < m_nSize);
 	return m_pData[nIndex]; 
 }
 
 // +++++++++ SetAt
+/**
+ * @brief           値の登録
+ * @param[in]       nIndex		登録するインデックス
+ * @param[in]       newElement	登録する値
+ */
 void SetAt(int nIndex, T* newElement){ 
 	assert(nIndex >= 0 && nIndex < m_nSize);
 	m_pData[nIndex] = newElement; 
 }
 
 // ++++++++++ Add
+/**
+ * @brief           値を末尾に追加
+ * @param[in]       newElement	追加する値
+ * @return          末尾のインデックス
+ */
 int Add(T* newElement){ 
 	int nIndex = m_nSize;
 	SetAtGrow(nIndex, newElement);
@@ -96,9 +131,19 @@ int Add(T* newElement){
 }
 
 // ++++++++++ overloaded operator helpers
+/**
+ * @brief           配列アクセス
+ * @param[in]       nIndex	取得するインデックス
+ * @return          値
+ */
 T* operator[](int nIndex) { return GetAt(nIndex); }
 
 // ++++++++++ Potentially growing the array
+/**
+ * @brief           値の登録（配列上限を指定されたインデックス以上に保つ）
+ * @param[in]       nIndex		登録するインデックス
+ * @param[in]       newElement	登録する値
+ */
 void SetAtGrow(int nIndex, T* newElement){
 
 	assert(nIndex >= 0);
@@ -107,6 +152,11 @@ void SetAtGrow(int nIndex, T* newElement){
 }
 
 // +++++++++ SetSize
+/**
+ * @brief           配列サイズの設定
+ * @param[in]       nNewSize	配列サイズ
+ * @param[in]       nGrowBy		
+ */
 void SetSize(int nNewSize, int nGrowBy = -1){
 
 	assert(nNewSize >= 0);
@@ -163,11 +213,23 @@ void SetSize(int nNewSize, int nGrowBy = -1){
 };
 
 
+/**
+ * @brief           最大値計算
+ * @param[in]       a	比較値1
+ * @param[in]       b	比較値2
+ * @return          最大値
+ */
 inline const int Amax( const int a, const int b )
 {
 	return a < b ? b : a;
 }
 
+/**
+ * @brief           最小値計算
+ * @param[in]       a	比較値1
+ * @param[in]       b	比較値2
+ * @return          最小値
+ */
 inline const int Amin( const int a, const int b )
 {
 	return b < a ? b : a;

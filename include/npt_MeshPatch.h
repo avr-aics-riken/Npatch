@@ -156,6 +156,11 @@ private:
 };
 
 // ++++++++++++++ ベクトルのサイズ（長さ）を求める ++++++++++++++++++
+/**
+ * @brief           ベクトルノルム計算
+ * @param[in]       vec ベクトル
+ * @return          ベクトルノルム
+ */
 inline double MeshPatch::CalcVecSize( double vec[3] )
 {
 	return sqrt( vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2] );
@@ -168,6 +173,12 @@ inline double MeshPatch::CalcPlaneD( double pos[3], double vec[3] )
 }
 
 // +++++++++++++++++++++++ ベクトルの内積 ++++++++++++++++++++++++++++
+/**
+ * @brief           ベクトル内積計算
+ * @param[in]       vec1    ベクトル1
+ * @param[in]       vec2  	ベクトル2
+ * @return          ベクトル内積
+ */
 inline double MeshPatch::CalcInProduct( double vec1[3], double vec2[3] )
 {
 	return ( vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2] );
