@@ -1,0 +1,75 @@
+##############################################################################
+#
+# Npatchlib - Nagata Patch Library
+#
+# Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
+# All rights reserved.
+#
+##############################################################################
+#
+# アーカイブ作成	        : make
+# includeファイルの依存関係更新 : make depend
+#
+# デバッグ時にはCXXFLAGSに以下を追加のこと
+# -g -DDEBUG
+#
+# 倍精度の場合は以下を追加のこと
+# -D_REAL_IS_DOUBLE_
+#
+# Copy 'Version.h' to include directory.
+# If you don't have the file, do configure on other environment and copy generated one.
+#
+# $ make -f Makefile_hand
+
+
+###########################################################################
+
+include ./make_setting
+
+TARGET_DIR	= ../lib
+
+TARGET	= $(TARGET_DIR)/libNpatchlib.a
+OBJS	= Npt.o \
+	FNpt.o
+
+
+#####################################
+# ヘッダファイル名作成用マクロ
+#####################################
+TMP = $(addsuffix .h, $(basename $(OBJS) ))
+HDRS = $(addprefix ../include/, $(TMP))
+
+
+#####################################
+# single版、MPI版作成ルール
+#####################################
+all : depend npt
+
+
+#####################################
+# single版作成ルール
+#####################################
+npt		: $(TARGET)
+$(TARGET)	: $(OBJS)
+	$(AR) $@ $^
+	$(RANLIB) $(TARGET)
+
+#####################################
+# サフィックスルール定義
+#####################################
+%.o: %.cxx
+	$(CXX) $(CXXFLAGS) -I../include $(UDEF_INC_PATH) -o $@ -c $<
+
+
+#####################################
+# ヘッダファイル依存関係
+#####################################
+depend		 : $(HDRS)
+	-@ $(RM) depend.inc
+	-@ for i in $^; do\
+		cpp $(CXXFLAGS) -I../include $(UDEF_INC_PATH) -MM $$i >> depend.inc;\
+	done
+-include depend.inc
+
+clean:
+	$(RM) $(TARGET) $(OBJS)
