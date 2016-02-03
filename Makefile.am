@@ -1,21 +1,21 @@
-###
-###################################################################################
+##############################################################################
 #
-# NpatchLib - Nagata Patch Library
+# Npatchlib - Nagata Patch Library
 #
-# Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+# Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
 # All rights reserved.
 #
-###################################################################################
-###
+##############################################################################
+
 
 SUBDIRS = @MAKE_SUB_DIRS@
 
-bin_SCRIPTS=npt-config
-CLEANFILES = $(bin_SCRIPTS)
-EXTRA_DIST = npt-config.in LICENSE BUILD_DIR/.gitkeep \
-             doc/doxygen/Doxyfile
-dist_data_DATA = AUTHORS COPYING ChangeLog README LICENSE NEWS README.md
+bin_SCRIPTS    = npatchlib-config
+CLEANFILES     = $(bin_SCRIPTS)
+EXTRA_DIST     = npatchlib-config.in LICENSE Makefile_hand \
+                 doc/doxygen/Doxyfile
+#                 doc/doxygen/Doxyfile examples
+dist_data_DATA = AUTHORS COPYING ChangeLog README LICENSE
 
 clean-local:
 	find ./ -name *.obj | xargs rm -f
