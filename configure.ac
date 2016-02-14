@@ -3,7 +3,7 @@
 #
 # NpatchLib - Nagata Patch Library
 #
-# Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+# Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
 # All rights reserved.
 #
 ###################################################################################
@@ -14,14 +14,14 @@
 
 AC_PREREQ([2.69])
 
-AC_INIT([NpatchLib],[0.8.1],[keno@riken.jp],[NpatchLib])
+AC_INIT([NpatchLib],[1.0.0],[keno@riken.jp],[NpatchLib])
 
 echo "----------------------------------------"
 echo "Running NpatchLib Configure Script"
 echo "----------------------------------------"
 
 
-AC_CONFIG_SRCDIR([src/npt_Data.cxx])
+AC_CONFIG_SRCDIR([src/Npt.cxx])
 
 
 #
@@ -36,8 +36,8 @@ AC_CONFIG_AUX_DIR(config)
 #
 
 if test -e configure.ac ; then
-echo "Please run configure from a separate build directory. It is not allowd to run configure in the source directory."
-echo "Pleaes try ..."
+echo "Please run configure from a separate build directory. It is not allowed to run configure in the source directory."
+echo "Please try ..."
 echo " "
 echo "$ cd BUILD_DIR"
 echo "$ ../configure [options]"
@@ -63,7 +63,7 @@ AM_INIT_AUTOMAKE()
 # revision No.
 #
 
-NPT_REVISION="20150720_1800"
+NPT_REVISION="20160215_1000"
 AC_SUBST(NPT_REVISION)
 
 
@@ -81,12 +81,6 @@ fi
 
 NPT_CXX="$CXX"
 AC_SUBST(NPT_CXX)
-
-
-#
-# example
-#
-AC_ARG_WITH(example, [AC_HELP_STRING([--with-example=(no|yes)],[make example [no]])], , with_example=no)
 
 
 
@@ -112,17 +106,12 @@ AC_SUBST(NPT_LIBS)
 AC_SUBST(MAKE_SUB_DIRS)
 MAKE_SUB_DIRS="src doc"
 
-if test x"$with_example" = x"yes" ; then
-MAKE_SUB_DIRS="$MAKE_SUB_DIRS"" Examples"
-fi
-
 
 #
 # Checks for programs.
 #
 
 AC_PROG_CXX
-AC_PROG_CC
 AC_PROG_RANLIB
 
 
@@ -131,7 +120,7 @@ AC_PROG_RANLIB
 # Checks for header files.
 #
 
-AC_CHECK_HEADERS([stdlib.h string.h sys/timeb.h])
+AC_CHECK_HEADERS([stdlib.h string.h sys/time.h])
 
 
 #
@@ -153,7 +142,6 @@ AC_CHECK_FUNCS([sqrt strstr])
 
 AC_CONFIG_FILES([Makefile \
                  src/Makefile \
-                 Examples/Makefile \
                  doc/Makefile \
                  npt-config \
                  include/npt_Version.h \

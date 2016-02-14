@@ -19,7 +19,7 @@
 #
 # NpatchLib - Nagata Patch Library
 #
-# Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+# Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
 # All rights reserved.
 #
 ###################################################################################
@@ -146,12 +146,8 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libNpatch_a_AR = $(AR) $(ARFLAGS)
 libNpatch_a_LIBADD =
-am_libNpatch_a_OBJECTS = libNpatch_a-npt_Data.$(OBJEXT) \
-	libNpatch_a-npt_MeshPatch.$(OBJEXT) \
-	libNpatch_a-npt_IOforStl.$(OBJEXT) \
-	libNpatch_a-npt_Vertex.$(OBJEXT) \
-	libNpatch_a-npt_Vector.$(OBJEXT) \
-	libNpatch_a-npt_Face.$(OBJEXT)
+am_libNpatch_a_OBJECTS = libNpatch_a-Npt.$(OBJEXT) \
+	libNpatch_a-FNpt.$(OBJEXT)
 libNpatch_a_OBJECTS = $(am_libNpatch_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -315,25 +311,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LIBRARIES = libNpatch.a
 libNpatch_a_CXXFLAGS = -I$(top_srcdir)/include
-libNpatch_a_SOURCES = \
-   npt_Data.cxx \
-   npt_MeshPatch.cxx \
-   npt_IOforStl.cxx \
-   npt_Vertex.cxx \
-   npt_Vector.cxx \
-   npt_Face.cxx
-
+libNpatch_a_SOURCES = Npt.cxx FNpt.cxx
 NPT_includedir = $(includedir)
 NPT_include_HEADERS = \
-   $(top_srcdir)/include/npt_Array.h \
-   $(top_srcdir)/include/npt_Data.h \
-   $(top_srcdir)/include/npt_Face.h \
-   $(top_srcdir)/include/npt_IOforStl.h \
-   $(top_srcdir)/include/npt_MeshPatch.h \
-   $(top_srcdir)/include/npt_Vector.h \
-   $(top_srcdir)/include/npt_Vertex.h \
-   $(top_srcdir)/include/npt_Version.h \
-   $(top_srcdir)/include/npt_Utility.h
+   $(top_srcdir)/include/Npt.h \
+   $(top_srcdir)/include/FNpt.h \
+   $(top_srcdir)/include/CalcGeo.h \
+   $(top_srcdir)/include/CalcGeo_Matrix.h \
+   $(top_srcdir)/include/npt_Version.h
 
 all: all-am
 
@@ -411,12 +396,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_Data.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_Face.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_IOforStl.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_MeshPatch.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_Vector.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-npt_Vertex.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-FNpt.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libNpatch_a-Npt.Po@am__quote@
 
 .cxx.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -432,89 +413,33 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-libNpatch_a-npt_Data.o: npt_Data.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Data.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Data.Tpo -c -o libNpatch_a-npt_Data.o `test -f 'npt_Data.cxx' || echo '$(srcdir)/'`npt_Data.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Data.Tpo $(DEPDIR)/libNpatch_a-npt_Data.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Data.cxx' object='libNpatch_a-npt_Data.o' libtool=no @AMDEPBACKSLASH@
+libNpatch_a-Npt.o: Npt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-Npt.o -MD -MP -MF $(DEPDIR)/libNpatch_a-Npt.Tpo -c -o libNpatch_a-Npt.o `test -f 'Npt.cxx' || echo '$(srcdir)/'`Npt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-Npt.Tpo $(DEPDIR)/libNpatch_a-Npt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Npt.cxx' object='libNpatch_a-Npt.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Data.o `test -f 'npt_Data.cxx' || echo '$(srcdir)/'`npt_Data.cxx
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-Npt.o `test -f 'Npt.cxx' || echo '$(srcdir)/'`Npt.cxx
 
-libNpatch_a-npt_Data.obj: npt_Data.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Data.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Data.Tpo -c -o libNpatch_a-npt_Data.obj `if test -f 'npt_Data.cxx'; then $(CYGPATH_W) 'npt_Data.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Data.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Data.Tpo $(DEPDIR)/libNpatch_a-npt_Data.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Data.cxx' object='libNpatch_a-npt_Data.obj' libtool=no @AMDEPBACKSLASH@
+libNpatch_a-Npt.obj: Npt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-Npt.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-Npt.Tpo -c -o libNpatch_a-Npt.obj `if test -f 'Npt.cxx'; then $(CYGPATH_W) 'Npt.cxx'; else $(CYGPATH_W) '$(srcdir)/Npt.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-Npt.Tpo $(DEPDIR)/libNpatch_a-Npt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Npt.cxx' object='libNpatch_a-Npt.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Data.obj `if test -f 'npt_Data.cxx'; then $(CYGPATH_W) 'npt_Data.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Data.cxx'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-Npt.obj `if test -f 'Npt.cxx'; then $(CYGPATH_W) 'Npt.cxx'; else $(CYGPATH_W) '$(srcdir)/Npt.cxx'; fi`
 
-libNpatch_a-npt_MeshPatch.o: npt_MeshPatch.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_MeshPatch.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_MeshPatch.Tpo -c -o libNpatch_a-npt_MeshPatch.o `test -f 'npt_MeshPatch.cxx' || echo '$(srcdir)/'`npt_MeshPatch.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_MeshPatch.Tpo $(DEPDIR)/libNpatch_a-npt_MeshPatch.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_MeshPatch.cxx' object='libNpatch_a-npt_MeshPatch.o' libtool=no @AMDEPBACKSLASH@
+libNpatch_a-FNpt.o: FNpt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-FNpt.o -MD -MP -MF $(DEPDIR)/libNpatch_a-FNpt.Tpo -c -o libNpatch_a-FNpt.o `test -f 'FNpt.cxx' || echo '$(srcdir)/'`FNpt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-FNpt.Tpo $(DEPDIR)/libNpatch_a-FNpt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='FNpt.cxx' object='libNpatch_a-FNpt.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_MeshPatch.o `test -f 'npt_MeshPatch.cxx' || echo '$(srcdir)/'`npt_MeshPatch.cxx
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-FNpt.o `test -f 'FNpt.cxx' || echo '$(srcdir)/'`FNpt.cxx
 
-libNpatch_a-npt_MeshPatch.obj: npt_MeshPatch.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_MeshPatch.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_MeshPatch.Tpo -c -o libNpatch_a-npt_MeshPatch.obj `if test -f 'npt_MeshPatch.cxx'; then $(CYGPATH_W) 'npt_MeshPatch.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_MeshPatch.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_MeshPatch.Tpo $(DEPDIR)/libNpatch_a-npt_MeshPatch.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_MeshPatch.cxx' object='libNpatch_a-npt_MeshPatch.obj' libtool=no @AMDEPBACKSLASH@
+libNpatch_a-FNpt.obj: FNpt.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-FNpt.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-FNpt.Tpo -c -o libNpatch_a-FNpt.obj `if test -f 'FNpt.cxx'; then $(CYGPATH_W) 'FNpt.cxx'; else $(CYGPATH_W) '$(srcdir)/FNpt.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-FNpt.Tpo $(DEPDIR)/libNpatch_a-FNpt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='FNpt.cxx' object='libNpatch_a-FNpt.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_MeshPatch.obj `if test -f 'npt_MeshPatch.cxx'; then $(CYGPATH_W) 'npt_MeshPatch.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_MeshPatch.cxx'; fi`
-
-libNpatch_a-npt_IOforStl.o: npt_IOforStl.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_IOforStl.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_IOforStl.Tpo -c -o libNpatch_a-npt_IOforStl.o `test -f 'npt_IOforStl.cxx' || echo '$(srcdir)/'`npt_IOforStl.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_IOforStl.Tpo $(DEPDIR)/libNpatch_a-npt_IOforStl.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_IOforStl.cxx' object='libNpatch_a-npt_IOforStl.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_IOforStl.o `test -f 'npt_IOforStl.cxx' || echo '$(srcdir)/'`npt_IOforStl.cxx
-
-libNpatch_a-npt_IOforStl.obj: npt_IOforStl.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_IOforStl.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_IOforStl.Tpo -c -o libNpatch_a-npt_IOforStl.obj `if test -f 'npt_IOforStl.cxx'; then $(CYGPATH_W) 'npt_IOforStl.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_IOforStl.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_IOforStl.Tpo $(DEPDIR)/libNpatch_a-npt_IOforStl.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_IOforStl.cxx' object='libNpatch_a-npt_IOforStl.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_IOforStl.obj `if test -f 'npt_IOforStl.cxx'; then $(CYGPATH_W) 'npt_IOforStl.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_IOforStl.cxx'; fi`
-
-libNpatch_a-npt_Vertex.o: npt_Vertex.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Vertex.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Vertex.Tpo -c -o libNpatch_a-npt_Vertex.o `test -f 'npt_Vertex.cxx' || echo '$(srcdir)/'`npt_Vertex.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Vertex.Tpo $(DEPDIR)/libNpatch_a-npt_Vertex.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Vertex.cxx' object='libNpatch_a-npt_Vertex.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Vertex.o `test -f 'npt_Vertex.cxx' || echo '$(srcdir)/'`npt_Vertex.cxx
-
-libNpatch_a-npt_Vertex.obj: npt_Vertex.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Vertex.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Vertex.Tpo -c -o libNpatch_a-npt_Vertex.obj `if test -f 'npt_Vertex.cxx'; then $(CYGPATH_W) 'npt_Vertex.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Vertex.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Vertex.Tpo $(DEPDIR)/libNpatch_a-npt_Vertex.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Vertex.cxx' object='libNpatch_a-npt_Vertex.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Vertex.obj `if test -f 'npt_Vertex.cxx'; then $(CYGPATH_W) 'npt_Vertex.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Vertex.cxx'; fi`
-
-libNpatch_a-npt_Vector.o: npt_Vector.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Vector.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Vector.Tpo -c -o libNpatch_a-npt_Vector.o `test -f 'npt_Vector.cxx' || echo '$(srcdir)/'`npt_Vector.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Vector.Tpo $(DEPDIR)/libNpatch_a-npt_Vector.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Vector.cxx' object='libNpatch_a-npt_Vector.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Vector.o `test -f 'npt_Vector.cxx' || echo '$(srcdir)/'`npt_Vector.cxx
-
-libNpatch_a-npt_Vector.obj: npt_Vector.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Vector.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Vector.Tpo -c -o libNpatch_a-npt_Vector.obj `if test -f 'npt_Vector.cxx'; then $(CYGPATH_W) 'npt_Vector.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Vector.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Vector.Tpo $(DEPDIR)/libNpatch_a-npt_Vector.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Vector.cxx' object='libNpatch_a-npt_Vector.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Vector.obj `if test -f 'npt_Vector.cxx'; then $(CYGPATH_W) 'npt_Vector.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Vector.cxx'; fi`
-
-libNpatch_a-npt_Face.o: npt_Face.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Face.o -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Face.Tpo -c -o libNpatch_a-npt_Face.o `test -f 'npt_Face.cxx' || echo '$(srcdir)/'`npt_Face.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Face.Tpo $(DEPDIR)/libNpatch_a-npt_Face.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Face.cxx' object='libNpatch_a-npt_Face.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Face.o `test -f 'npt_Face.cxx' || echo '$(srcdir)/'`npt_Face.cxx
-
-libNpatch_a-npt_Face.obj: npt_Face.cxx
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -MT libNpatch_a-npt_Face.obj -MD -MP -MF $(DEPDIR)/libNpatch_a-npt_Face.Tpo -c -o libNpatch_a-npt_Face.obj `if test -f 'npt_Face.cxx'; then $(CYGPATH_W) 'npt_Face.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Face.cxx'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libNpatch_a-npt_Face.Tpo $(DEPDIR)/libNpatch_a-npt_Face.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='npt_Face.cxx' object='libNpatch_a-npt_Face.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-npt_Face.obj `if test -f 'npt_Face.cxx'; then $(CYGPATH_W) 'npt_Face.cxx'; else $(CYGPATH_W) '$(srcdir)/npt_Face.cxx'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libNpatch_a_CXXFLAGS) $(CXXFLAGS) -c -o libNpatch_a-FNpt.obj `if test -f 'FNpt.cxx'; then $(CYGPATH_W) 'FNpt.cxx'; else $(CYGPATH_W) '$(srcdir)/FNpt.cxx'; fi`
 install-NPT_includeHEADERS: $(NPT_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(NPT_include_HEADERS)'; test -n "$(NPT_includedir)" || list=; \

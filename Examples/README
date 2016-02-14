@@ -1,46 +1,22 @@
 /*
  * NpatchLib - Nagata Patch Library
  *
- * Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+ * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
  *
  */
 
+1) edit make.sh
+Replace string "INSTALLED_DIR" to the directory that Npatchlib was installed.
+If the build library is double precision, add "-D_REAL_IS_DOUBLE_" to CXXFLAGS.
 
-このディレクトリには、NpatchLibの例題プログラムが格納されています。
-例題プログラムは、次のコマンドで生成されます。
+2) build
+>$ ./make.sh
 
-$cd ../BUILD_DIR/Examples
-$make
+3) execution
+>$ ./testc or testf
+#### Program Start
+#### Program End
 
-ただし、NpatchLibライブラリのビルドが終わっていることが前提です。
-
-プログラムは以下の様に動かします。
-$cp stl2npt ../../Examples
-$cd ../../Examples
-$./stl2npt fan.stl 3 0
-
-3次元Nagata Patchファイルfan_lib.nptが生成されます。
-
-
-コマンド引数は以下の様になります。
-$./stl2npt STLFilePath degree(2 or 3) outPutEncode(0:Ascii, 1:Binary)
-
-
-プログラム実行例
-3次元Nagata PatchファイルをAsciiコードで出力します。
-$./stl2npt fan.stl 3 0
-ファイルfan_lib.nptが生成されます。
-
-3次元Nagata PatchファイルをBinaryコードで出力します。
-$./stl2npt fan.stl 3 1
-ファイルfan_lib.nptが生成されます。
-
-2次元Nagata PatchファイルをAsciiコードで出力します。
-$./stl2npt fan.stl 2 0
-ファイルfan_lib.nptが生成されます。
-
-2次元Nagata PatchファイルをBinaryコードで出力します。
-$./stl2npt fan.stl 2 1
-ファイルfan_lib.nptが生成されます。
-
+>$ ls
+main.c  make.sh  npt_out.npt  stl4_out.stl  stl_in.stl  testc

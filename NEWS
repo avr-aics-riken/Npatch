@@ -1,13 +1,15 @@
 /*
  * NpatchLib - Nagata Patch Library
  *
- * Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+ * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
  *
  */
 
 RELEASE
 =======
+
+Version 1.0.0   2016-02-14
 
 Version 0.8.1   2015-07-20
 Version 0.8.0   2015-07-20

@@ -1,7 +1,7 @@
 /*
  * NpatchLib - Nagata Patch Library
  *
- * Copyright (c) 2015 Advanced Institute for Computational Science, RIKEN.
+ * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
  *
  */
@@ -22,4 +22,3 @@
 #define NPT_REVISION    "@NPT_REVISION@"
 
 #endif /* _NPT_VERSION_H_ */
-
