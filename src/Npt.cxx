@@ -50,7 +50,7 @@ void npt_param_correctP11( NPT_REAL p11[3], NPT_REAL p1[3], NPT_REAL p2[3], NPT_
 /// @param [out]   cp_side3_1   長田パッチ p3p1辺の３次ベジェ制御点1
 /// @param [out]   cp_side3_2   長田パッチ p3p1辺の３次ベジェ制御点2
 /// @param [out]   cp_center    長田パッチ 三角形中央の３次ベジェ制御点
-/// @return リターンコード   =1 正常  =0 異常
+/// @return リターンコード   =0 正常  !=0 異常
 /// @attention
 ///     エラー：許容誤差
 
@@ -138,7 +138,7 @@ npt_param_crt(
            cp_center    // [out] 中央制御点
         );
 
-    return 1;   // 1: 正常
+    return 0;
 }
 
 
