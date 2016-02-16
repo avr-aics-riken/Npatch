@@ -34,6 +34,9 @@ Configure options:
 --prefix=INSTALL_DIR
    Specify a directory to be installed. The default directory is /usr/local/CPMlib.
 
+--with-real=(float|double)
+    This option allows to specify the type of real variable. The default is float.
+
 CXX=CXX_COMPILER
    Specify a C++ compiler, e.g., g++, icpc, xlc++ or others.
 

@@ -65,7 +65,7 @@ extern "C" {  // for C++
 /// @param [out]   cp_side3_1   長田パッチ p3p1辺の３次ベジェ制御点1
 /// @param [out]   cp_side3_2   長田パッチ p3p1辺の３次ベジェ制御点2
 /// @param [out]   cp_center    長田パッチ 三角形中央の３次ベジェ制御点
-/// @param [out]   ret          リターンコード   =1 正常  =0 異常
+/// @param [out]   ret          リターンコード   =0 正常  !=0 異常
 /// @return 戻り値なし
 /// @attention
 ///     エラー：許容誤差

@@ -97,6 +97,18 @@ AC_SUBST(NPT_LDFLAGS)
 NPT_LIBS="-lNpatch"
 AC_SUBST(NPT_LIBS)
 
+#
+# Type of REAL
+#
+AC_ARG_WITH(real, [AC_HELP_STRING([--with-real=(float|double)],[Specify real type [float]])], , with_real=float)
+AC_SUBST(REAL_OPT)
+
+if test x"$with_real" = x"double" ; then
+  REAL_OPT=-D_REAL_IS_DOUBLE_
+  NPT_CFLAGS="$NPT_CFLAGS"" $REAL_OPT"
+else
+  REAL_OPT=
+fi
 
 
 #

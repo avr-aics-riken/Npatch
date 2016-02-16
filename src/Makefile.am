@@ -11,7 +11,7 @@
 
 lib_LIBRARIES = libNpatch.a
 
-libNpatch_a_CXXFLAGS = -I$(top_srcdir)/include
+libNpatch_a_CXXFLAGS = @REAL_OPT@ -I$(top_srcdir)/include
 
 libNpatch_a_SOURCES = Npt.cxx FNpt.cxx
 
