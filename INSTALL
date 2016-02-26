@@ -63,8 +63,9 @@ $ ../configure --prefix=${FFV_HOME}/Npatchlib \
 
 ## Double precision
 $ ../configure --prefix=${FFV_HOME}/Npatchlib \
+               --with-real=double \
                CXX=g++ \
-               CXXFLAGS="-O3 -D_REAL_IS_DOUBLE_"
+               CXXFLAGS=-O3
 
 
 # for K-computer. cross-compiling, /wo example

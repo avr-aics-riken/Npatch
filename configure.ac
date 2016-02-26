@@ -12,7 +12,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.57])
 
 AC_INIT([NpatchLib],[1.0.0],[keno@riken.jp],[NpatchLib])
 
