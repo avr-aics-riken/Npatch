@@ -175,7 +175,7 @@ npt_cvt_pos_to_eta_xi(
         printf( "     p2=%g %g %g\n",p2[0],p2[1],p2[2] );
         printf( "     pos=%g %g %g\n",pos[0],pos[1],pos[2] );
         printf( "     pos23=%g %g %g\n",pos23[0],pos23[1],pos23[2] );
-        exit;
+        exit(1);
     }
 
     // pos点を通るp1p2に平行な線分とp2p3線分との交点を求める
@@ -196,7 +196,7 @@ npt_cvt_pos_to_eta_xi(
         printf( "     pos12=%g %g %g\n",pos12[0],pos12[1],pos12[2] );
         printf( "     p2=%g %g %g\n",p2[0],p2[1],p2[2] );
         printf( "     p3=%g %g %g\n",p3[0],p3[1],p3[2] );
-        exit;
+        exit(1);
     }
 
     // eta = p1とpos_x12の長さ / p1p2の長さ
