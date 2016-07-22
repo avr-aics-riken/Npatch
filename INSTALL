@@ -1,5 +1,5 @@
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
@@ -32,7 +32,7 @@ Configure options:
    Specify in case of cross-compilation.
 
 --prefix=INSTALL_DIR
-   Specify a directory to be installed. The default directory is /usr/local/CPMlib.
+   Specify a directory to be installed. The default directory is /usr/local/Npatch.
 
 --with-real=(float|double)
     This option allows to specify the type of real variable. The default is float.
@@ -49,7 +49,7 @@ Here is examples.
 
 # for Intel compiler
 
-$ ../configure --prefix=${FFV_HOME}/NpatchLib \
+$ ../configure --prefix=${FFV_HOME}/Npatch \
                CXX=icpc \
                CXXFLAGS=-O3
 
@@ -57,12 +57,12 @@ $ ../configure --prefix=${FFV_HOME}/NpatchLib \
 # for GNU compiler
 
 ## Single precision
-$ ../configure --prefix=${FFV_HOME}/Npatchlib \
+$ ../configure --prefix=${FFV_HOME}/Npatch \
                CXX=g++ \
                CXXFLAGS=-O3
 
 ## Double precision
-$ ../configure --prefix=${FFV_HOME}/Npatchlib \
+$ ../configure --prefix=${FFV_HOME}/Npatch \
                --with-real=double \
                CXX=g++ \
                CXXFLAGS=-O3
@@ -70,7 +70,34 @@ $ ../configure --prefix=${FFV_HOME}/Npatchlib \
 
 # for K-computer. cross-compiling, /wo example
 
-$ ../configure --prefix=${FFV_HOME}/CPMlib \
+$ ../configure --prefix=${FFV_HOME}/Npatch \
                --host=sparc64-unknown-linux-gnu \
                CXX=FCCpx \
                CXXFLAGS=-Kfast
+
+
+(2) with cmake for windows(Visual Studio)
+
+- convert sources(*.h,*.cpp,*.cxx) to utf-8 bom(byte of marker) files
+  for visual studio
+
+    on linux/unix :
+      $ ./bom_add.sh
+
+    on windows :
+      please, use tool ( ZiiDetector etc. )
+
+- use cmake-gui.exe
+
+    (setting parameters example)
+      Name                        Value
+     --------------------------------------------
+      CMAKE_CONFIGURATION_TYPES   Release
+      CMAKE_INSTALL_PREFIX        C:/FFV_HOME
+      NPT_CXX                     CC
+
+      ** install directory is C:¥FFV_HOME¥Npatch
+
+- build with Visual Studio
+    
+

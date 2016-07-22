@@ -1,7 +1,7 @@
 ###
 ###################################################################################
 #
-# NpatchLib - Nagata Patch Library
+# Npatch - Nagata Patch Library
 #
 # Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
 # All rights reserved.
@@ -14,10 +14,10 @@
 
 AC_PREREQ([2.57])
 
-AC_INIT([NpatchLib],[1.0.0],[keno@riken.jp],[NpatchLib])
+AC_INIT([Npatch],[1.0.1],[keno@riken.jp],[Npatch])
 
 echo "----------------------------------------"
-echo "Running NpatchLib Configure Script"
+echo "Running Npatch Configure Script"
 echo "----------------------------------------"
 
 
@@ -63,7 +63,7 @@ AM_INIT_AUTOMAKE()
 # revision No.
 #
 
-NPT_REVISION="20160215_1000"
+NPT_REVISION="20160705_1000"
 AC_SUBST(NPT_REVISION)
 
 
@@ -71,9 +71,9 @@ AC_SUBST(NPT_REVISION)
 # default prefix setting
 #
 
-AC_PREFIX_DEFAULT([/usr/local/NpatchLib])
+AC_PREFIX_DEFAULT([/usr/local/Npatch])
 if test "$prefix" = "NONE" ; then
-NPT_INST_DIR=/usr/local/NpatchLib
+NPT_INST_DIR=/usr/local/Npatch
 else
 NPT_INST_DIR="$prefix"
 fi
@@ -165,5 +165,5 @@ AC_OUTPUT
 chmod +x ./npt-config
 
 echo "---------------------------------------------"
-echo "Finished Running NpatchLib Configure Script"
+echo "Finished Running Npatch Configure Script"
 echo "---------------------------------------------"

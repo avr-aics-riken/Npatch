@@ -2,7 +2,7 @@
 #define _CALC_GEO_MATRIX_H_
 
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.

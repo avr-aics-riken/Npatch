@@ -17,7 +17,7 @@
 ###
 ###################################################################################
 #
-# NpatchLib - Nagata Patch Library
+# Npatch - Nagata Patch Library
 #
 # Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
 # All rights reserved.
@@ -90,7 +90,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
-	$(top_srcdir)/config/depcomp $(NPT_include_HEADERS)
+	$(top_srcdir)/config/depcomp $(NPT_include_HEADERS) \
+	$(nobase_include_HEADERS)
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -126,7 +127,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(NPT_includedir)"
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(NPT_includedir)" \
+	"$(DESTDIR)$(includedir)"
 LIBRARIES = $(lib_LIBRARIES)
 AR = ar
 ARFLAGS = cru
@@ -179,7 +181,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-HEADERS = $(NPT_include_HEADERS)
+HEADERS = $(NPT_include_HEADERS) $(nobase_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -300,15 +302,21 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LIBRARIES = libNpatch.a
-libNpatch_a_CXXFLAGS = @REAL_OPT@ -I$(top_srcdir)/include
+libNpatch_a_CXXFLAGS = @REAL_OPT@ -I../include -I$(top_srcdir)/include
 libNpatch_a_SOURCES = Npt.cxx FNpt.cxx
+
+# npt_Version.h.in -> BUILD_DIR/include/npt_Version.h -> install
 NPT_includedir = $(includedir)
 NPT_include_HEADERS = \
-   $(top_srcdir)/include/Npt.h \
-   $(top_srcdir)/include/FNpt.h \
-   $(top_srcdir)/include/CalcGeo.h \
-   $(top_srcdir)/include/CalcGeo_Matrix.h \
-   $(top_srcdir)/include/npt_Version.h
+   ../include/npt_Version.h
+
+
+# SRC_DIR/include/* -> install
+nobase_include_HEADERS = \
+   ../include/Npt.h \
+   ../include/FNpt.h \
+   ../include/CalcGeo.h \
+   ../include/CalcGeo_Matrix.h
 
 all: all-am
 
@@ -452,6 +460,30 @@ uninstall-NPT_includeHEADERS:
 	@list='$(NPT_include_HEADERS)'; test -n "$(NPT_includedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(NPT_includedir)'; $(am__uninstall_files_from_dir)
+install-nobase_includeHEADERS: $(nobase_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(nobase_include_HEADERS)'; test -n "$(includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(includedir)" || exit 1; \
+	fi; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo " $(MKDIR_P) '$(DESTDIR)$(includedir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(includedir)/$$dir"; }; \
+	    echo " $(INSTALL_HEADER) $$xfiles '$(DESTDIR)$(includedir)/$$dir'"; \
+	    $(INSTALL_HEADER) $$xfiles "$(DESTDIR)$(includedir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_include_HEADERS)'; test -n "$(includedir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	dir='$(DESTDIR)$(includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -539,7 +571,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(NPT_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(NPT_includedir)" "$(DESTDIR)$(includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -594,7 +626,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-NPT_includeHEADERS
+install-data-am: install-NPT_includeHEADERS \
+	install-nobase_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -639,7 +672,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-NPT_includeHEADERS uninstall-libLIBRARIES
+uninstall-am: uninstall-NPT_includeHEADERS uninstall-libLIBRARIES \
+	uninstall-nobase_includeHEADERS
 
 .MAKE: install-am install-strip
 
@@ -650,13 +684,14 @@ uninstall-am: uninstall-NPT_includeHEADERS uninstall-libLIBRARIES
 	install-NPT_includeHEADERS install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-libLIBRARIES install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
+	install-info-am install-libLIBRARIES install-man \
+	install-nobase_includeHEADERS install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
 	uninstall-NPT_includeHEADERS uninstall-am \
-	uninstall-libLIBRARIES
+	uninstall-libLIBRARIES uninstall-nobase_includeHEADERS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
