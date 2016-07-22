@@ -1,5 +1,5 @@
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
@@ -7,7 +7,7 @@
  */
 
 1) edit make.sh
-Replace string "INSTALLED_DIR" to the directory that Npatchlib was installed.
+Replace string "INSTALLED_DIR" to the directory that Npatch was installed.
 If the build library is double precision, add "-D_REAL_IS_DOUBLE_" to CXXFLAGS.
 
 2) build

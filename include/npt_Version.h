@@ -1,5 +1,5 @@
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
@@ -16,9 +16,9 @@
 #define _NPT_VERSION_H_
 
 /** Npatchライブラリのバージョン */
-#define NPT_VERSION_NO  "1.0.0"
+#define NPT_VERSION_NO  "1.0.1"
 
 /** Npatchライブラリのリビジョン */
-#define NPT_REVISION    "20160215_1000"
+#define NPT_REVISION    "20160705_1000"
 
 #endif /* _NPT_VERSION_H_ */

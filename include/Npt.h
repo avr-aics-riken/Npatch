@@ -2,7 +2,7 @@
 #define _NPT_H_
 
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
@@ -44,6 +44,8 @@
 #define NPT_ALW_V  0.005
 #endif
 #endif
+
+#include "npt_Version.h"
 
 #ifndef INLINE
 #define INLINE inline

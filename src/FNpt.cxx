@@ -1,6 +1,6 @@
 
 /*
- * NpatchLib - Nagata Patch Library
+ * Npatch - Nagata Patch Library
  *
  * Copyright (c) 2015-2016 Advanced Institute for Computational Science, RIKEN.
  * All rights reserved.
@@ -151,7 +151,7 @@ fnpt_move_vertex_ (
         NPT_REAL  cp_center_n [3]
     )
 {
-    fnpt_move_vertex_ (
+    npt_move_vertex (
             p1, p2, p3,
             cp_side1_1, cp_side1_2, cp_side2_1, cp_side2_2,
             cp_side3_1, cp_side3_2, cp_center,
